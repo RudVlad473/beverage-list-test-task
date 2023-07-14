@@ -1,0 +1,36 @@
+@use "../../stylesheets/abstracts/" as *;
+@use "../../stylesheets/mixins/" as *;
+
+.button {
+  border: none;
+  outline: none;
+
+  padding: $ui-step $ui-step * 2;
+
+  color: $secondary-color;
+  background-color: $primary-color;
+
+  @include transition-200;
+
+  border-radius: 0.5em;
+
+  &--hovered {
+    scale: 1.025;
+  }
+
+  &:hover {
+    background-color: $primary-color-muted;
+
+    @extend .button--hovered;
+  }
+
+  &--danger {
+    background-color: $danger-color;
+
+    &:hover {
+      background-color: $danger-color-muted;
+
+      @extend .button--hovered;
+    }
+  }
+}
