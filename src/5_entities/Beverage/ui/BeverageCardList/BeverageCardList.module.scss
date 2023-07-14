@@ -1,0 +1,9 @@
+@use "../../../../6_shared/stylesheets/abstracts/" as *;
+
+$card-width: 250px;
+
+.beverage-card-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax($card-width, 1fr));
+  gap: $ui-step * 2;
+}

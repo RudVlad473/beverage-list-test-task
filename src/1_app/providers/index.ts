@@ -1,3 +1,6 @@
 import compose from "compose-function"
 
-export const withProviders = compose()
+import { withReactQuery } from "./withReactQuery"
+import { withReactRouter } from "./withReactRouter"
+
+export const withProviders = compose(withReactQuery, withReactRouter)

@@ -1,0 +1,1 @@
+export { BeverageViewPage } from "./BeverageViewPage"
