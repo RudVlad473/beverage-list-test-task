@@ -1,2 +1,24 @@
+@use "../../../../6_shared/stylesheets/abstracts/" as *;
+
 .toolbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  font-size: $fs-300;
+  font-weight: $bold;
+}
+
+.info {
+}
+
+.btn {
+}
+
+.tags {
 }
