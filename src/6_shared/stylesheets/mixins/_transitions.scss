@@ -1,0 +1,23 @@
+$transition-style: ease-in-out;
+
+@mixin transform-origin-center {
+  transform-origin: center center;
+}
+
+@mixin transition-100 {
+  transition: all 0.15s $transition-style;
+
+  @include transform-origin-center();
+}
+
+@mixin transition-200 {
+  transition: all 0.25s $transition-style;
+
+  @include transform-origin-center();
+}
+
+@mixin transition-300 {
+  transition: all 0.5s $transition-style;
+
+  @include transform-origin-center();
+}

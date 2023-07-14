@@ -1,0 +1,22 @@
+@mixin scroll-snap-container {
+  scroll-snap-type: mandatory;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  overflow: scroll;
+
+  overflow-x: hidden;
+}
+
+@mixin scroll-snap-section($vertical-alignment: center, $scroll-alignment: center) {
+  display: flex;
+  align-items: $vertical-alignment;
+  justify-content: center;
+
+  min-width: 0;
+  max-width: 100%;
+
+  min-height: 100vh;
+
+  scroll-snap-align: $scroll-alignment;
+}
