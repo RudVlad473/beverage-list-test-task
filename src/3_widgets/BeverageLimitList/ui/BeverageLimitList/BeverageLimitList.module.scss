@@ -1,8 +1,10 @@
+@use '../../../../6_shared/stylesheets/mixins/' as *;
+
 .beverage-limit-list {
   display: flex;
   flex-direction: column;
 }
 
 .beverage-list-row {
-
+  @include scroll-snap-section;
 }
