@@ -1,2 +1,30 @@
+@use "../../6_shared/stylesheets/abstracts/" as *;
+@use "../../6_shared/stylesheets/mixins/" as *;
+
+$toolbar-offset: 1em;
+
 .home {
+  display: flex;
+  flex-direction: column;
+
+  padding: $ui-step * 2;
+}
+
+.toolbar {
+  position: fixed;
+  top: 0;
+
+  padding: $toolbar-offset;
+
+  width: 100%;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include z-index-overlay;
+
+  background-color: $background-color-muted;
+}
+
+.list {
 }
