@@ -1,0 +1,19 @@
+@use "../abstracts/breakpoints" as *;
+
+@mixin media-mobile {
+  @media screen and (max-width: $bp-mobile) {
+    @content;
+  }
+}
+
+@mixin media-tablet {
+  @media screen and (max-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media screen and (max-width: $bp-medium) {
+    @content;
+  }
+}
