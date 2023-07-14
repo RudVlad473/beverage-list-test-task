@@ -1,9 +1,15 @@
 $primary-color: hsl(130, 28%, 31%);
+$primary-color-muted: hsl(130, 20%, 31%);
 
 $text-color: hsl(313, 29%, 6%);
 
 $background-color: hsl(300, 27%, 98%);
+$background-color-muted: hsla(300, 20%, 98%, 0.5);
 
 $accent-color: hsl(100, 28%, 50%);
 
 $secondary-color: hsl(160, 29%, 90%);
+$secondary-color-muted: hsla(160, 29%, 90%, 0.5);
+
+$danger-color: hsl(4, 90%, 58%);
+$danger-color-muted: hsl(4, 75%, 58%);

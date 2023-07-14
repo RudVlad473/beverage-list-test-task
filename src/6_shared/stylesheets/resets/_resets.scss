@@ -1,3 +1,5 @@
+@use '../abstracts/gutters' as *;
+
 *,
 *::before,
 *::after {
@@ -7,8 +9,8 @@
 }
 
 html {
-  overflow: scroll;
-  overflow-x: hidden;
+  // overflow: scroll;
+  // overflow-x: hidden;
 
   //hide scrollbar
   overflow-y: scroll;
@@ -22,29 +24,16 @@ html {
   // }
 }
 
-// body {
-//   min-height: 100vh;
+body {
+  min-height: 100vh;
 
-//   overflow-y: hidden;
-//   overflow-x: hidden;
-//   overflow: hidden;
+  // overflow-y: hidden;
+  // overflow-x: hidden;
+  // overflow: hidden;
 
-//   text-rendering: optimizeSpeed;
-//   //line-height: 1.5;
-
-//   -ms-overflow-style: none; /* Internet Explorer 10+ */
-//   scrollbar-width: none; /* Firefox */
-//   &::-webkit-scrollbar {
-//     display: none;
-//   }
-// }
-
-// ::-webkit-scrollbar {
-//   width: 0;
-//   /* Remove scrollbar space */
-//   background: transparent;
-//   /* Optional: just make scrollbar invisible */
-// }
+  text-rendering: optimizeSpeed;
+  line-height: $line-height;
+}
 
 ul {
   list-style: none;

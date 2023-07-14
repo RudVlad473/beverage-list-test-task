@@ -1,9 +1,12 @@
 @use "../abstracts/" as *;
+@use "../mixins/" as *;
 
 html {
   font-family: $main-font-family, "Calibri";
 
   scroll-behavior: smooth;
+
+  @include scroll-snap-container;
 }
 
 body {
