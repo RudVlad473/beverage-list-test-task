@@ -1,9 +1,12 @@
 @use "../../../../6_shared/stylesheets/abstracts/" as *;
-
-$card-width: 250px;
+@use "../../../../6_shared/stylesheets/mixins/" as *;
+@use "../../../../6_shared/stylesheets/components/" as *;
 
 .beverage-card-list {
   display: grid;
-  grid-template-columns: repeat(5, minmax($card-width, 1fr));
-  gap: $ui-step * 2;
+  grid-template-columns: repeat(5, minmax($beverage-card-width, 1fr));
+  gap: $beverage-card-list-gap;
+}
+
+.beverage-card {
 }

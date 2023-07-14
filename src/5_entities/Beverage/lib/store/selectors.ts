@@ -1,6 +1,6 @@
-import { TBeveragesStore } from "."
+import { TBeverageStore } from "../types"
 
-export const selectBeverages = ({ beverages, setBeverages, appendBeverages }: TBeveragesStore) => ({
+export const selectBeverages = ({ beverages, setBeverages, appendBeverages }: TBeverageStore) => ({
   beverages,
   setBeverages,
   appendBeverages,
@@ -9,7 +9,11 @@ export const selectBeverages = ({ beverages, setBeverages, appendBeverages }: TB
 export const selectSelectedBeverages = ({
   selectedBeverages,
   selectBeverage,
-}: TBeveragesStore) => ({
+  removeSelectedBeverages,
+  selectAll,
+}: TBeverageStore) => ({
   selectedBeverages,
   selectBeverage,
+  removeSelectedBeverages,
+  selectAll,
 })

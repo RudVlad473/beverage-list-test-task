@@ -1,37 +1,117 @@
 @use "../../../../6_shared/stylesheets/abstracts/" as *;
+@use "../../../../6_shared/stylesheets/mixins/" as *;
+@use "../../../../6_shared/stylesheets/components/" as *;
 
-$illustration-width: 50px;
+$illustration-width: $ui-step * 6;
+$illustration-height: $illustration-width * 4;
 
 .beverage-card {
+  $top-border-radius: 7.5em;
+  $bottom-border-radius: 0;
+
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: $ui-step * 2;
+
+  background-color: $secondary-color;
+
   border: 4px solid $accent-color;
-  border-radius: 1em;
+  border-radius: $top-border-radius $top-border-radius $bottom-border-radius $bottom-border-radius;
+
   height: 100%;
+
   padding: $ui-step * 2;
+
+  transform-origin: center center;
+
+  @include transition-200;
+
+  cursor: pointer;
+
+  will-change: scale;
+
+  &--selected {
+    @extend .beverage-card--hovered;
+
+    border-radius: $bottom-border-radius;
+
+  box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.5);
+
+
+    &:hover {
+      scale: 1.015;
+    }
+  }
+
+  &--hovered {
+    scale: 1.05;
+
+    border-color: $primary-color;
+  }
+
+  &:hover {
+    @extend .beverage-card--hovered;
+  }
 }
 
 .illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   max-width: $illustration-width;
   min-width: $illustration-width;
+
+  max-height: $illustration-height;
+  min-height: $illustration-height;
+
+  margin-inline: auto;
+
+  @include transition-300;
+
+  &:hover {
+    scale: 1.35;
+  }
 }
 
 .name {
-  font-size: $fs-200;
-  margin-inline: auto;
+  color: $primary-color;
+
+  font-size: $fs-300;
+
+  line-height: 1.25;
+
+  text-align: center;
+
   font-weight: $bold;
+
+  &:hover {
+    color: $text-color;
+  }
+
+  @include transition-100;
+
+  @include cutoff-text(2);
 }
 
 .descr {
+  font-size: $fs-100;
   font-family: $secondary-font-family;
+
   text-align: justify;
+
+  @include cutoff-text();
+}
+
+.footer {
+  margin-top: auto;
+
+  font-weight: $bold;
 }
 
 .first-brewed {
-  font-weight: $bold;
 }
 
 .contributed-by {
-  font-weight: $bold;
 }

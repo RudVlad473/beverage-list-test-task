@@ -1,1 +1,1 @@
-export * from "./useBeverages"
+export * from "./useInfiniteBeverages"

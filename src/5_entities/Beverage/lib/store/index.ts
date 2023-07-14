@@ -1,2 +1,2 @@
-export * from "./beverages-store"
+export * from "./beverage-store"
 export * from "./selectors"
