@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     stylelintPlugin({
-      fix: true,
+      fix: false,
       emitError: false
     }),
   ],
