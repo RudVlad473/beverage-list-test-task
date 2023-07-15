@@ -5,10 +5,10 @@ import { TBeverages } from "../../../../5_entities/Beverage/lib/types"
 import { maxRecipesViewed } from "../../consts"
 import { getViewedBeverages } from "../utils"
 
-export function useLazyBeverages(beverages: TBeverages) {
+export function useLazyBeverages(beverages: TBeverages, cursor: number) {
   const beverageRows: TBeverages[] = useMemo(
-    () => chunk(getViewedBeverages(beverages), maxRecipesViewed),
-    [beverages]
+    () => chunk(getViewedBeverages(beverages, cursor), maxRecipesViewed),
+    [beverages, cursor]
   )
 
   return {

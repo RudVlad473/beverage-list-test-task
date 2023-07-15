@@ -2,6 +2,7 @@ import { FC, useCallback, useEffect } from "react"
 
 import {
   selectBeverages,
+  selectCursor,
   selectSelectedBeverages,
   useBeverageStore,
 } from "../../../../5_entities/Beverage/lib/store"
@@ -16,6 +17,7 @@ type ToolbarProps = {
 
 export const Toolbar: FC<ToolbarProps> = ({ fetchNextPage }) => {
   const { beverages } = useBeverageStore(selectBeverages)
+  const { cursor } = useBeverageStore(selectCursor)
   const { selectedBeverages, removeSelectedBeverages, selectAll } =
     useBeverageStore(selectSelectedBeverages)
 
@@ -26,16 +28,17 @@ export const Toolbar: FC<ToolbarProps> = ({ fetchNextPage }) => {
   }, [beverages])
 
   const handleRemoveSelected = useCallback(() => {
-    const isEnoughBeverages = beverages.length - selectedBeverages.length > maxRecipesRendered
+    const isEnoughBeveragesLeft = beverages.length - selectedBeverages.length > maxRecipesRendered
+    const areAllBeveragesViewed = cursor < beverages.length
 
     removeSelectedBeverages()
 
-    if (!isEnoughBeverages) {
+    if (!isEnoughBeveragesLeft && areAllBeveragesViewed) {
       console.log("fetching")
 
       fetchNextPage()
     }
-  }, [beverages.length, fetchNextPage, removeSelectedBeverages, selectedBeverages.length])
+  }, [beverages.length, cursor, fetchNextPage, removeSelectedBeverages, selectedBeverages.length])
 
   const handleSelectAll = useCallback(() => {
     selectAll()

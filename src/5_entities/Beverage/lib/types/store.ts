@@ -5,6 +5,10 @@ export type TBeverageStore = {
   setBeverages: (beverages: TBeverages) => void
   appendBeverages: (beverages: TBeverages) => void
 
+  cursor: number
+  cursorNext: () => void
+  cursorPrev: () => void
+
   selectedBeverages: TSelectedBeverages
   selectBeverage: (beverage: TSelectedBeverage) => void
   selectAll: () => void

@@ -6,6 +6,12 @@ export const selectBeverages = ({ beverages, setBeverages, appendBeverages }: TB
   appendBeverages,
 })
 
+export const selectCursor = ({ cursor, cursorNext, cursorPrev }: TBeverageStore) => ({
+  cursor,
+  cursorNext,
+  cursorPrev,
+})
+
 export const selectSelectedBeverages = ({
   selectedBeverages,
   selectBeverage,
