@@ -1,0 +1,1 @@
+export const maxScrollRateLimitMs = 2500

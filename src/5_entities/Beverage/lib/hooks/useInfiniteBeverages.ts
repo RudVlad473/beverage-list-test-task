@@ -14,15 +14,17 @@ export function useInfiniteBeverages() {
     })
   }, [beverages])
 
-  const { isLoading, isInitialLoading } = useBeveragePages(page, appendBeverages)
+  const { isLoading } = useBeveragePages(page, appendBeverages)
 
   const nextPage = useCallback(() => {
-    const loading = isLoading || isInitialLoading
+    const loading = isLoading
 
-    if (!loading) {
-      incrementPage()
+    if (loading) {
+      return
     }
-  }, [incrementPage, isInitialLoading, isLoading])
+
+    incrementPage()
+  }, [incrementPage, isLoading])
 
   useBeverageAmount(beverages, nextPage)
 

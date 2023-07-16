@@ -2,6 +2,7 @@
 import { useEffect } from "react"
 
 import { maxRecipesViewed } from "../../../../3_widgets/BeverageLimitList/consts"
+import { beveragesPerPage } from "../../../../6_shared/consts"
 import { selectCursor, useBeverageStore } from "../store"
 import { TBeverages } from "../types"
 
@@ -12,13 +13,9 @@ export function useBeverageCursor(beverages: TBeverages, incrementPage: () => vo
     const viewThreshold = cursor + maxRecipesViewed * 2
 
     const isViewThresholdCrossed = viewThreshold >= beverages.length
+    const areBeveragesFull = beverages.length >= beveragesPerPage
 
-    console.log({
-      cursor,
-      beverages: beverages.length,
-    })
-
-    if (isViewThresholdCrossed) {
+    if (isViewThresholdCrossed && areBeveragesFull) {
       incrementPage()
     }
   }, [beverages.length, cursor, incrementPage])

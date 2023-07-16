@@ -28,11 +28,6 @@ export function useBeveragePages(page: number, appendBeverages: (beverages: TBev
       const isPageAlreadyAppended = lastAppendedPageRef.current === page
 
       if (newPageBeverages && !isPageAlreadyAppended) {
-        console.log({
-          lastAppendedPage: lastAppendedPageRef.current,
-          page,
-        })
-
         appendBeverages(newPageBeverages)
 
         lastAppendedPageRef.current = page
