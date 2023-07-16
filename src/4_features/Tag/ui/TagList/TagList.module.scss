@@ -1,2 +1,13 @@
+@use "../../../../6_shared/stylesheets/abstracts/" as *;
+
+$tags-gap: $ui-step * 0.85;
+
 .tag-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tag {
+  margin: $tags-gap $tags-gap * 0.5;
 }

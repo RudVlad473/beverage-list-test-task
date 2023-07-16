@@ -1,0 +1,15 @@
+@use "../../../../6_shared/stylesheets/abstracts/" as *;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $ui-step * 3;
+
+  width: clamp(300px, 75%, 600px);
+
+  list-style: disc;
+
+  font-style: italic;
+  font-weight: $bold;
+  font-size: $fs-100;
+}

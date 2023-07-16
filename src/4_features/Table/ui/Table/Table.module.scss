@@ -1,0 +1,39 @@
+@use "../../../../6_shared/stylesheets/abstracts/" as *;
+@use "../../../../6_shared/stylesheets/mixins/" as *;
+
+$border-width: 2px;
+
+.table {
+  color: $accent-color;
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  border: $border-width solid $accent-color;
+
+  @include transition-200;
+
+  &:hover {
+    font-size: $fs-200;
+  }
+}
+
+.th,
+.td {
+  border: $border-width solid $secondary-color;
+
+  padding: $ui-step;
+
+  text-align: center;
+}
+
+.td {
+}
+
+.th {
+  background-color: $secondary-color-muted;
+}
+
+.tr {
+}

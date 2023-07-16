@@ -1,0 +1,8 @@
+@use "../../../6_shared/stylesheets/abstracts/" as *;
+
+.article {
+  font-size: $fs-100;
+  font-family: $secondary-font-family;
+
+  text-align: justify;
+}
