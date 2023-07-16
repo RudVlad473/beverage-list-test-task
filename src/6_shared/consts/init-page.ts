@@ -1,0 +1,1 @@
+export const initPage = 1
