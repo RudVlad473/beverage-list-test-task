@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { FC, useCallback, useRef, useState } from "react"
+import { FC, useCallback, useRef } from "react"
 
 import {
   selectBeverages,
