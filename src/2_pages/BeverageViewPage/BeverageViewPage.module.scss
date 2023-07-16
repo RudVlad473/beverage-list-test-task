@@ -1,2 +1,82 @@
+@use "../../6_shared/stylesheets/abstracts/" as *;
+@use "../../6_shared/stylesheets/mixins/" as *;
+
+$content-gap: $ui-step * 3;
+
 .beverage-view-page {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: $content-gap * 2;
+
+  width: clamp($ui-step * 40, 60dvw, $ui-step * 110);
+
+  margin: $content-gap auto;
+}
+
+.article {
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $content-gap;
+}
+
+.two-sections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $ui-step;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $content-gap;
+}
+
+.tips {
+  display: flex;
+  flex-direction: column;
+
+  font-weight: $bold;
+  font-style: italic;
+
+  width: clamp($ui-step * 30, 80%, $ui-step * 50);
+
+  color: $primary-color-muted;
+
+  background-color: $secondary-color-muted;
+
+  padding: $content-gap;
+
+  border-radius: 1em;
+
+  margin-inline: auto;
+
+  outline: 2px solid $primary-color;
+  outline-offset: -$ui-step;
+}
+
+.notation {
+  margin-left: auto;
+  margin-top: $ui-step * 2;
+}
+
+.method {
+  display: flex;
+  flex-direction: column;
+  gap: $content-gap;
+}
+
+.pairings {
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: $content-gap;
+
+  color: $text-color-muted;
+
+  font-weight: $bold;
 }
