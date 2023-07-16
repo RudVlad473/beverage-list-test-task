@@ -1,4 +1,4 @@
-import { TMeasure } from "."
+import { THops, TMeasure } from "."
 
 export type TPart = {
   name: string
@@ -9,6 +9,6 @@ export type TParts = TPart[]
 
 export type TIngredient = {
   malt: TParts
-  hops: TParts
+  hops: THops
   yeast: string
 }

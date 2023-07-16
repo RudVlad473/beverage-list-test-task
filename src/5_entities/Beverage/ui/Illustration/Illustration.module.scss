@@ -1,0 +1,40 @@
+@use "../../../../6_shared/stylesheets/abstracts/" as *;
+@use "../../../../6_shared/stylesheets/mixins/" as *;
+@use "../../../../6_shared/stylesheets/components/" as *;
+
+$illustration-width: $ui-step * 6;
+$illustration-height: $illustration-width * 4;
+
+$size-scale: 3;
+
+.illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: max-content;
+
+  margin-inline: auto;
+
+  @include transition-300;
+
+  &:hover {
+    scale: 1.35;
+  }
+
+  &--sm {
+    max-width: $illustration-width;
+    // min-width: $illustration-width;
+
+    max-height: $illustration-height;
+    // min-height: $illustration-height;
+  }
+
+  &--lg {
+    max-width: $illustration-width * $size-scale;
+    // min-width: $illustration-width * $size-scale;
+
+    max-height: $illustration-height * $size-scale;
+    // min-height: $illustration-height * $size-scale;
+  }
+}

@@ -1,4 +1,5 @@
-import { FC } from "react"
+/* eslint-disable react/prop-types */
+import { memo } from "react"
 
 import { BeverageCard } from ".."
 import { TBeverageCards } from "../../lib/types"
@@ -8,7 +9,7 @@ type BeverageCardListProps = {
   beverages: TBeverageCards
 }
 
-export const BeverageCardList: FC<BeverageCardListProps> = ({ beverages }) => {
+export const BeverageCardList = memo<BeverageCardListProps>(({ beverages }) => {
   return (
     <ul className={styles["beverage-card-list"]}>
       {beverages.map((beverage) => (
@@ -18,4 +19,4 @@ export const BeverageCardList: FC<BeverageCardListProps> = ({ beverages }) => {
       ))}
     </ul>
   )
-}
+})

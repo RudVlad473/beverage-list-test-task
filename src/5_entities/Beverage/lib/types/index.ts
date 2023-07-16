@@ -1,5 +1,7 @@
 export * from "./beverage-card"
 export * from "./beverage"
+export * from "./hop"
+export * from "./illustration"
 export * from "./ingredient"
 export * from "./measure"
 export * from "./method"
