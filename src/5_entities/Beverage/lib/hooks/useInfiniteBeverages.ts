@@ -1,61 +1,32 @@
-import { useInfiniteQuery } from "@tanstack/react-query"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect } from "react"
 
-import { TBeveragesEndpoint, axiosInstance } from "../../../../6_shared/api"
-import { initPage } from "../../../../6_shared/consts"
+import { useBeverageAmount, useBeverageCursor, useBeveragePages } from "."
 import { usePageStore } from "../../../../6_shared/lib/store"
 import { selectBeverages, useBeverageStore } from "../store"
-import { TBeverages } from "../types"
 
 export function useInfiniteBeverages() {
-  const { appendBeverages } = useBeverageStore(selectBeverages)
-  const { page } = usePageStore()
-
-  const { data, isLoading, fetchNextPage } = useInfiniteQuery({
-    queryKey: ["beverages"],
-    queryFn: ({ pageParam }) =>
-      axiosInstance.get<TBeverages>(TBeveragesEndpoint.BEVERAGES, {
-        params: {
-          page: pageParam,
-        },
-      }),
-    enabled: false,
-  })
-
-  const lastPageAppended = useRef<number | undefined>(data?.pages.length)
-
-  const isCurrentPageFetched = useMemo<boolean>(() => {
-    return page === data?.pages.length
-  }, [data?.pages.length, page])
+  const { beverages, appendBeverages } = useBeverageStore(selectBeverages)
+  const { page, incrementPage } = usePageStore()
 
   useEffect(() => {
-    if (isCurrentPageFetched) {
-      return
-    }
-
-    fetchNextPage({
-      pageParam: page,
+    console.log({
+      beverages,
     })
-  }, [fetchNextPage, isCurrentPageFetched, page])
+  }, [beverages])
 
-  // Renew data on every new request
-  useEffect(() => {
-    const isNewPageFetched = (data?.pages.length || 0) === page
+  const { isLoading, isInitialLoading } = useBeveragePages(page, appendBeverages)
 
-    const isPageAlreadyAppended = lastPageAppended.current === page
+  const nextPage = useCallback(() => {
+    const loading = isLoading || isInitialLoading
 
-    if (!isNewPageFetched || isPageAlreadyAppended) {
-      return
+    if (!loading) {
+      incrementPage()
     }
+  }, [incrementPage, isInitialLoading, isLoading])
 
-    const lastPageBeverages = data?.pages.at(-1)?.data
+  useBeverageAmount(beverages, nextPage)
 
-    if (lastPageBeverages) {
-      appendBeverages(lastPageBeverages)
-
-      lastPageAppended.current = page
-    }
-  }, [appendBeverages, data?.pages, lastPageAppended, page])
+  useBeverageCursor(beverages, nextPage)
 
   return {
     isLoading,

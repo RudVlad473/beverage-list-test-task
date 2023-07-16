@@ -3,6 +3,7 @@
     "/src/5_entities/Beverage/lib/types",
     "/src/5_entities/Beverage/consts",
     "/src/5_entities/Beverage/api",
-    "/src/5_entities/Beverage/lib/store"
+    "/src/5_entities/Beverage/lib/store",
+    "/src/5_entities/Beverage/lib/hooks"
   ]
 }

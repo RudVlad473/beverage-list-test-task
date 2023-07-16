@@ -1,48 +1,25 @@
-import { FC, useCallback, useEffect } from "react"
+import { FC } from "react"
 
+import { TagList } from "../../../../4_features/Tag/ui"
 import {
   selectBeverages,
-  selectCursor,
   selectSelectedBeverages,
   useBeverageStore,
 } from "../../../../5_entities/Beverage/lib/store"
-import { usePageStore } from "../../../../6_shared/lib/store"
 import { TBtnType } from "../../../../6_shared/lib/types"
 import { Button } from "../../../../6_shared/ui"
-import { maxRecipesRendered } from "../../../BeverageLimitList/consts"
 import styles from "./Toolbar.module.scss"
 
 export const Toolbar: FC = () => {
-  const { incrementPage } = usePageStore()
   const { beverages } = useBeverageStore(selectBeverages)
-  const { cursor } = useBeverageStore(selectCursor)
   const { selectedBeverages, removeSelectedBeverages, selectAll } =
     useBeverageStore(selectSelectedBeverages)
 
-  // useEffect(() => {
-  //   console.log({
-  //     beverages,
-  //   })
-  // }, [beverages])
-
-  const handleRemoveSelected = useCallback(() => {
-    const isEnoughBeveragesLeft = beverages.length - selectedBeverages.length > maxRecipesRendered
-    const areAllBeveragesViewed = cursor < beverages.length
-
-    removeSelectedBeverages()
-
-    if (!isEnoughBeveragesLeft && areAllBeveragesViewed) {
-      console.log('toolbar trigger');
-      
-      incrementPage()
-    }
-  }, [beverages.length, cursor, incrementPage, removeSelectedBeverages, selectedBeverages.length])
-
-  const handleSelectAll = useCallback(() => {
-    selectAll()
-  }, [selectAll])
-
   const anySelected = selectedBeverages.length > 0
+
+  const selectedBeveragesTags = selectedBeverages
+    .map((beverageId) => beverages.find(({ id }) => beverageId === id)!.name)
+    .filter((v) => v)
 
   return (
     <section className={styles.toolbar}>
@@ -53,10 +30,10 @@ export const Toolbar: FC = () => {
               <span>Beverages selected: ({selectedBeverages.length})</span>
             </header>
             <div className={styles.btn}>
-              <Button onClick={handleSelectAll}>SELECT ALL</Button>
+              <Button onClick={selectAll}>SELECT ALL</Button>
             </div>
             <div className={styles.btn}>
-              <Button btnType={TBtnType.DANGER} onClick={handleRemoveSelected}>
+              <Button btnType={TBtnType.DANGER} onClick={removeSelectedBeverages}>
                 REMOVE SELECTED
               </Button>
             </div>
@@ -65,7 +42,13 @@ export const Toolbar: FC = () => {
           <p className={styles.toolbar}>Right-click on beverage to select it!</p>
         )}
       </div>
-      <ul className={styles.tags}></ul>
+      <div>
+        <TagList
+          tags={selectedBeveragesTags.map((beverage) => ({
+            tag: beverage,
+          }))}
+        />
+      </div>
     </section>
   )
 }

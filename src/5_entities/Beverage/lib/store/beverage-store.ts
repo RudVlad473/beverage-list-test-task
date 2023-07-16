@@ -4,8 +4,8 @@ import {
   maxRecipesRendered,
   maxRecipesViewed,
 } from "../../../../3_widgets/BeverageLimitList/consts"
-import { getViewedBeverages } from "../../../../3_widgets/BeverageLimitList/lib/utils"
 import { TBeverageStore, TSelectedBeverages } from "../types"
+import { getViewedBeverages } from "../utils"
 
 export const useBeverageStore = create<TBeverageStore>((set, get) => ({
   beverages: [],

@@ -3,7 +3,7 @@ import { useMemo } from "react"
 
 import { TBeverages } from "../../../../5_entities/Beverage/lib/types"
 import { maxRecipesViewed } from "../../consts"
-import { getViewedBeverages } from "../utils"
+import { getViewedBeverages } from "../../../../5_entities/Beverage/lib/utils"
 
 export function useLazyBeverages(beverages: TBeverages, cursor: number) {
   const beverageRows: TBeverages[] = useMemo(
