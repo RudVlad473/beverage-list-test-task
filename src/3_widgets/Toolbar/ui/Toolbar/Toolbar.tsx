@@ -6,26 +6,24 @@ import {
   selectSelectedBeverages,
   useBeverageStore,
 } from "../../../../5_entities/Beverage/lib/store"
+import { usePageStore } from "../../../../6_shared/lib/store"
 import { TBtnType } from "../../../../6_shared/lib/types"
 import { Button } from "../../../../6_shared/ui"
 import { maxRecipesRendered } from "../../../BeverageLimitList/consts"
 import styles from "./Toolbar.module.scss"
 
-type ToolbarProps = {
-  fetchNextPage: () => void
-}
-
-export const Toolbar: FC<ToolbarProps> = ({ fetchNextPage }) => {
+export const Toolbar: FC = () => {
+  const { incrementPage } = usePageStore()
   const { beverages } = useBeverageStore(selectBeverages)
   const { cursor } = useBeverageStore(selectCursor)
   const { selectedBeverages, removeSelectedBeverages, selectAll } =
     useBeverageStore(selectSelectedBeverages)
 
-  useEffect(() => {
-    console.log({
-      beverages,
-    })
-  }, [beverages])
+  // useEffect(() => {
+  //   console.log({
+  //     beverages,
+  //   })
+  // }, [beverages])
 
   const handleRemoveSelected = useCallback(() => {
     const isEnoughBeveragesLeft = beverages.length - selectedBeverages.length > maxRecipesRendered
@@ -34,11 +32,11 @@ export const Toolbar: FC<ToolbarProps> = ({ fetchNextPage }) => {
     removeSelectedBeverages()
 
     if (!isEnoughBeveragesLeft && areAllBeveragesViewed) {
-      console.log("fetching")
-
-      fetchNextPage()
+      console.log('toolbar trigger');
+      
+      incrementPage()
     }
-  }, [beverages.length, cursor, fetchNextPage, removeSelectedBeverages, selectedBeverages.length])
+  }, [beverages.length, cursor, incrementPage, removeSelectedBeverages, selectedBeverages.length])
 
   const handleSelectAll = useCallback(() => {
     selectAll()

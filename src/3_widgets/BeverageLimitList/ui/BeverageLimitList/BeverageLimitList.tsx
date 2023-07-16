@@ -7,36 +7,37 @@ import {
   useBeverageStore,
 } from "../../../../5_entities/Beverage/lib/store"
 import { BeverageCardList } from "../../../../5_entities/Beverage/ui"
+import { usePageStore } from "../../../../6_shared/lib/store"
 import { maxRecipesViewed } from "../../consts"
 import { useLazyBeverages } from "../../lib/hooks"
 import { concatIds } from "../../lib/utils"
 import styles from "./BeverageLimitList.module.scss"
 
-type BeverageLimitListProps = {
-  isLoading: boolean
-  fetchNextPage: () => void
-}
-
-export const BeverageLimitList: FC<BeverageLimitListProps> = ({ fetchNextPage, isLoading }) => {
+export const BeverageLimitList: FC = () => {
+  const { incrementPage } = usePageStore()
   const { beverages } = useBeverageStore(selectBeverages)
   const { cursor, cursorNext, cursorPrev } = useBeverageStore(selectCursor)
   const { beverageRows } = useLazyBeverages(beverages, cursor)
+
+  useEffect(() => {
+    console.log({
+      beverages,
+    })
+  }, [beverages])
 
   useEffect(() => {
     const loadThreshold = maxRecipesViewed * 2
 
     const isEnoughBeverages = cursor + loadThreshold < beverages.length
 
-    if (!isEnoughBeverages) {
-      fetchNextPage()
+    if (!isEnoughBeverages && beverages.length !== 0) {
+      // console.log('list trigger');
+
+      incrementPage()
     }
-  }, [beverages, cursor, fetchNextPage])
+  }, [beverages.length, cursor, incrementPage])
 
   const anyBeverages = !!beverages?.length
-
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
 
   return (
     <ul className={styles["beverage-limit-list"]}>
