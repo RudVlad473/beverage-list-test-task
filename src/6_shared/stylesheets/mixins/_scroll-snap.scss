@@ -1,6 +1,9 @@
 @mixin scroll-snap-container {
-  scroll-snap-type: mandatory;
-  scroll-snap-type: y mandatory;
+  //mandatory proximity
+  $scroll-snap-type: proximity;
+
+  scroll-snap-type: $scroll-snap-type;
+  scroll-snap-type: y $scroll-snap-type;
   scroll-behavior: smooth;
 
   overflow: scroll;
